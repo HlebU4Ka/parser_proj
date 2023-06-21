@@ -52,6 +52,12 @@ class HHAPI(JobSiteAPI):
 
 class SuP_job_API(JobSiteAPI):
     api: str = os.environ.get("SUPERJOB_API")
+    headers = {
+        'Host': 'api.superjob.ru',
+        'X-Api-App-Id': api,
+        'Authorization': 'Bearer r.000000010000001.example.access_token',
+        'Content-Type': 'application / x-www-form-urlencoded',
+    }
 
     def __init__(self, name):
         self.name = name
@@ -61,6 +67,8 @@ class SuP_job_API(JobSiteAPI):
             'published': 1,
 
         }
+
+
 
     def get_jobs(self):
         """
