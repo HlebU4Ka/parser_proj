@@ -86,10 +86,10 @@ class SuP_job_API(JobSiteAPI):
         return f"{self.__class__.__name__}('{self.name}')"
 
 
-# hh_api = HHAPI("Python")
-# hh_jobs = hh_api.get_content()
-# print(hh_jobs)
-#
-# sup_api = SuP_job_API("Python")
-# sup_jobs = sup_api.get_content()
-# print(sup_jobs)
+hh_api = HHAPI("Python")
+hh_jobs = hh_api.get_content()
+print(hh_jobs)
+
+sup_api = SuP_job_API("Python")
+sup_jobs = sup_api.get_content()
+print(sup_jobs)
