@@ -191,6 +191,17 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
+name = "saver"
+version = "0.0.2"
+description = ""
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "saver-0.0.2-py3-none-any.whl", hash = "sha256:ff934232a9633ef9fb1b03fc6510548ec54133270e321fdc5ebc1be286d25c80"},
+]
+
+[[package]]
 name = "urllib3"
 version = "2.0.3"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -211,4 +222,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "d2eeb5574119a0e351b9ffc109e2577eff82255473b023c27a099a019cd3e127"
+content-hash = "81ca80df2b445c7419641aad5db0ce4ed8ca3b80c69210e606278e3eddcfc666"

@@ -4,6 +4,7 @@ import httpx
 import ujson
 
 SUPERJOB_API = ("https://www.superjob.ru/2.0/vacancies/")
+api = "v3.r.137628441.065b9b8deae7dce637fcff2952f982e386912ba2.e9067c71aa6de6605c3d46f5446f11c25c640834"
 
 
 class JobSiteAPI(ABC):
@@ -48,7 +49,6 @@ class SuP_job_API(JobSiteAPI):
        Класс для получения данных с www.superjob.ru
     """
     #api: str = os.environ.get("SUPERJOB_API")
-    api = "v3.r.137628441.065b9b8deae7dce637fcff2952f982e386912ba2.e9067c71aa6de6605c3d46f5446f11c25c640834"
     headers = {
         'Host': 'api.superjob.ru',
         'X-Api-App-Id': api,
@@ -86,10 +86,10 @@ class SuP_job_API(JobSiteAPI):
         return f"{self.__class__.__name__}('{self.name}')"
 
 
-hh_api = HHAPI("Python")
-hh_jobs = hh_api.get_content()
-print(hh_jobs)
-
-sup_api = SuP_job_API("Python")
-sup_jobs = sup_api.get_content()
-print(sup_jobs)
+# hh_api = HHAPI("Python")
+# hh_jobs = hh_api.get_content()
+# print(hh_jobs)
+#
+# sup_api = SuP_job_API("Python")
+# sup_jobs = sup_api.get_content()
+# print(sup_jobs)
