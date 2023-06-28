@@ -1,47 +1,40 @@
-import os
+
 from abc import ABC, abstractmethod
 import httpx
 import ujson
 
-SUPERJOB_API = ("https://2647.superjob.ru/2.0/vacancies")
+SUPERJOB_API = ("https://www.superjob.ru/2.0/vacancies/")
 
 
 class JobSiteAPI(ABC):
-    @abstractmethod
-    def connect(self):
-        pass
 
     @abstractmethod
-    def get_jobs(self):
+    def get_content(self):
         pass
 
 
 class HHAPI(JobSiteAPI):
-
+    """
+    Класс для получения данных с hh.ru
+    """
     def __init__(self, name: str) -> None:
-        self.__params = None
         self.name = name
+        self.__params = {
+            "text": "NAME:" + self.name,
+            "page": 0,
+            "per_page": 100
+        }
 
-    def connect(self):
+    def get_content(self):
         """
         Метод для получения данных по заданной вакансии
         :return: список вакансий в формате json
         """
         hh_req = httpx.get('https://api.hh.ru/vacancies', params=self.__params)
         hh_row_data = hh_req.content.decode()
-        hh_json = ujson.load(hh_row_data)
+        hh_json = ujson.loads(hh_row_data)
 
         return hh_json
-
-    def get_jobs(self) -> dict:
-        """
-        Метод для получения данных по заданной вакансии
-        """
-        self.__params = {
-            "text": "NAME:" + self.name,
-            "page": 0,
-            "per_page": 100
-        }
 
     def __str__(self):
         return self.name
@@ -51,7 +44,11 @@ class HHAPI(JobSiteAPI):
 
 
 class SuP_job_API(JobSiteAPI):
-    api: str = os.environ.get("SUPERJOB_API")
+    """
+       Класс для получения данных с www.superjob.ru
+    """
+    #api: str = os.environ.get("SUPERJOB_API")
+    api = "v3.r.137628441.065b9b8deae7dce637fcff2952f982e386912ba2.e9067c71aa6de6605c3d46f5446f11c25c640834"
     headers = {
         'Host': 'api.superjob.ru',
         'X-Api-App-Id': api,
@@ -68,19 +65,17 @@ class SuP_job_API(JobSiteAPI):
 
         }
 
-
-
-    def get_jobs(self):
+    def get_content(self):
         """
         Метод для получения данных по заданной вакансии
         :return: список вакансий в формате json
         """
-        get_info = httpx.get('SUPERJOB_API',
+        get_info = httpx.get('https://www.superjob.ru/2.0/vacancies/',
                              params=self.__params,
                              headers=self.headers
                              )
         row_date = get_info.content.decode()
-        supj_json = ujson.load(row_date)
+        supj_json = ujson.loads(row_date)
 
         return supj_json
 
@@ -89,3 +84,12 @@ class SuP_job_API(JobSiteAPI):
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}('{self.name}')"
+
+
+hh_api = HHAPI("Python")
+hh_jobs = hh_api.get_content()
+print(hh_jobs)
+
+sup_api = SuP_job_API("Python")
+sup_jobs = sup_api.get_content()
+print(sup_jobs)
