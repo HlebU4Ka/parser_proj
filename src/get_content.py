@@ -26,7 +26,7 @@ class HHAPI(JobSiteAPI):
             "per_page": 100
         }
 
-    def get_content(self):
+    def get_content(self) -> dict:
         """
         Метод для получения данных по заданной вакансии
         :return: список вакансий в формате json
@@ -65,7 +65,7 @@ class SuP_job_API(JobSiteAPI):
 
         }
 
-    def get_content(self):
+    def get_content(self) -> dict:
         """
         Метод для получения данных по заданной вакансии
         :return: список вакансий в формате json
@@ -85,11 +85,10 @@ class SuP_job_API(JobSiteAPI):
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}('{self.name}')"
 
-
-hh_api = HHAPI("Python")
-hh_jobs = hh_api.get_content()
-print(hh_jobs)
-
-sup_api = SuP_job_API("Python")
-sup_jobs = sup_api.get_content()
-print(sup_jobs)
+# hh_api = HHAPI("Python")
+# hh_jobs = hh_api.get_content()
+# print(hh_jobs)
+#
+# sup_api = SuP_job_API("Python")
+# sup_jobs = sup_api.get_content()
+# print(sup_jobs)

@@ -87,5 +87,5 @@ class Vacancy:
                f"{self.__city}, {self.__url}, {self.__address}"
 
     def __repr__(self):
-        return f"{self.__class__name__}, {self.__salary}, {self.__exp}, " \
+        return f"{self.__class__.__name__}, {self.__salary}, {self.__exp}, " \
                f"{self.__city}, {self.__url}, {self.__address}"

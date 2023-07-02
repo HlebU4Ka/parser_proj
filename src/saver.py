@@ -7,9 +7,6 @@ from abc import ABC, abstractmethod
 
 class Saver(ABC):
 
-    @abstractmethod
-    def job_adding(self, jobs):
-        pass
 
     @abstractmethod
     def get_salary(self, jobs):
