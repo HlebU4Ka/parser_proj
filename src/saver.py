@@ -30,7 +30,7 @@ class Saver(ABC):
 
 
 class Json_Save(Saver):
-    file = os.path.join("..", "srs", "vacancy.py", 'vacancy.json')
+    file = os.path.join("..", "srs", 'vacancy.json')
 
     def jobs_adding(self, jobs: dict) -> None:
         """
