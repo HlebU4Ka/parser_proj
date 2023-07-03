@@ -1,6 +1,5 @@
 import ujson
-
-from src.saver import Json_Save, TXT_Save
+from src.saver import Js_Saver, TxT_Saver
 from src.vacancy import Vacancy
 from src.get_content import HHAPI, SuP_job_API
 
@@ -16,8 +15,8 @@ def user_interaction():
     super_job = SuP_job_API(search_vacancy)
     get_superjp_v = super_job.get_content()
 
-    json_saver = Json_Save()
-    txt_saver = TXT_Save()
+    json_saver = Js_Saver()
+    txt_saver = TxT_Saver()
 
     # записывание данные от НН в класс Vacancy и сохраняет их в файл
     for item in get_hh['items']:
@@ -37,8 +36,8 @@ def user_interaction():
         vacancy = Vacancy(item['name'], salary, experience,
                          address, item['employment']['name'], item['area']['name'])
 
-        json_saver.jobs_adding(vacancy.__dict__)
-        txt_saver.jobs_adding(vacancy.__dict__)
+        json_saver.job_adding(vacancy.__dict__)
+        txt_saver.job_adding(vacancy.__dict__)
 
     # записывание данные от superjob в класс Vacancy и сохраняет их в файл
     for item in get_superjp_v['objects']:
@@ -46,8 +45,8 @@ def user_interaction():
         vacancy = Vacancy(item['profession'], item['payment_from'], item['experience']['title'], item['address'],
                           item['type_of_work']['title'], item['town']['title'])
 
-        json_saver.jobs_adding(vacancy.__dict__)
-        txt_saver.jobs_adding(vacancy.__dict__)
+        json_saver.job_adding(vacancy.__dict__)
+        txt_saver.job_adding(vacancy.__dict__)
 
     try:
         filter_one = json_saver.get_city(input("Укажите город для поиска: "))
